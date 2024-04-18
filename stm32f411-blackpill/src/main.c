@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include "controlar_led.h"
 
  /****************************************************************************
  * Pre-processor Definitions
