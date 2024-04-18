@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include "controlar_led.h"
 
  /****************************************************************************
  * Pre-processor Definitions
@@ -144,15 +145,12 @@ int main(int argc, char *argv[])
 
   while(1)
     {
-      /* Liga LED */
-
-      *pGPIOC_BSRR = GPIO_BSRR_RESET(13);
-      for (i = 0; i < LED_DELAY; i++);
-
-      /* Desliga LED */
-
-      *pGPIOC_BSRR = GPIO_BSRR_SET(13);
-      for (i = 0; i < LED_DELAY; i++);
+     // Lê o estado atual do botão conectado a PA0
+        estado_botao_atual = GPIOA->IDR & GPIO_IDR_ID0;
+        // Chama a função para controlar o LED com base no botão
+        controlarLED(pGPIOC_BSRR, estado_botao_antigo, estado_botao_atual);
+        // Atualiza o estado antigo do botão para o próximo ciclo
+        estado_botao_antigo = estado_botao_atual;
     }
 
   /* Nunca deveria chegar aqui */
