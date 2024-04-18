@@ -145,7 +145,12 @@ int main(int argc, char *argv[])
 
   while(1)
     {
-     controlarLED(pGPIOC_BSRR);
+     // Lê o estado atual do botão conectado a PA0
+        estado_botao_atual = GPIOA->IDR & GPIO_IDR_ID0;
+        // Chama a função para controlar o LED com base no botão
+        controlarLED(pGPIOC_BSRR, estado_botao_antigo, estado_botao_atual);
+        // Atualiza o estado antigo do botão para o próximo ciclo
+        estado_botao_antigo = estado_botao_atual;
     }
 
   /* Nunca deveria chegar aqui */
