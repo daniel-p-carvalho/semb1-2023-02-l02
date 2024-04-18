@@ -145,15 +145,7 @@ int main(int argc, char *argv[])
 
   while(1)
     {
-      /* Liga LED */
-
-      *pGPIOC_BSRR = GPIO_BSRR_RESET(13);
-      for (i = 0; i < LED_DELAY; i++);
-
-      /* Desliga LED */
-
-      *pGPIOC_BSRR = GPIO_BSRR_SET(13);
-      for (i = 0; i < LED_DELAY; i++);
+     controlarLED(pGPIOC_BSRR);
     }
 
   /* Nunca deveria chegar aqui */
